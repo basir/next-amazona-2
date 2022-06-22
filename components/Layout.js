@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
 import {
@@ -72,6 +72,12 @@ export default function Layout({ title, description, children }) {
     Cookies.remove('cartItems');
     router.push('/');
   };
+
+  useEffect(() => {
+    const colorMode = Cookies.get('darkMode');
+    dispatch({ type:colorMode === 'OFF' ? 'DARK_MODE_OFF' : 'DARK_MODE_ON'  });
+  }, [dispatch]);
+  
   return (
     <div>
       <Head>
