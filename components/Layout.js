@@ -72,6 +72,12 @@ export default function Layout({ title, description, children }) {
     Cookies.remove('cartItems');
     router.push('/');
   };
+
+  useEffect(() => {
+    const colorMode = Cookies.get('darkMode');
+    dispatch({ type:colorMode === 'OFF' ? 'DARK_MODE_OFF' : 'DARK_MODE_ON'  });
+  }, [dispatch]);
+  
   return (
     <div>
       <Head>
